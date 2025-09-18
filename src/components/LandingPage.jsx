@@ -87,8 +87,8 @@ function LandingPage() {
 
       if (!res.ok) {
         // readable error for debugging
-        const text = await res.text();
-        throw new Error(`HTTP ${res.status} — ${text}`);
+        const text = await res.json();
+        throw new Error(text.error);
       }
 
       const data = await res.json();
@@ -97,8 +97,8 @@ function LandingPage() {
         setFolders(data.folders || []);
       }
     } catch (err) {
-      console.error("fetchFolders error:", err);
-      setError(err.message || "Failed to fetch folders");
+      console.error("fetchFolders error:", err.error);
+      setError(err.error || "Failed to fetch folders");
       setTimeout(() => setError(""), 2000);
     } finally {
       setLoading(false);
