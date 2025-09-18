@@ -493,7 +493,7 @@ function LandingPage() {
               {Videos.length === 0 ? (
                 <p className="text-white">No videos in this folder yet...</p>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2">
                   {Videos.map((v) => (
                     <motion.div
                       whileHover={{ scale: 1.02 }}
