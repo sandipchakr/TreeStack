@@ -45,7 +45,7 @@ function Signup() {
 
     <form onSubmit={handleSubmit(postForm)} className='align-middle'>
       {servermsg && (
-        <div className='bg-blue-200 min-w-[30rem] p-3 rounded'>
+        <div className='bg-[#020b1a] inline-block text-white p-4 w-full'>
           <span>{servermsg}</span>
         </div>
       )}
