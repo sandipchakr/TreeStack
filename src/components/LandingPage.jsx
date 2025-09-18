@@ -493,14 +493,14 @@ function LandingPage() {
               {Videos.length === 0 ? (
                 <p className="text-white">No videos in this folder yet...</p>
               ) : (
-                <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2">
+                <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                   {Videos.map((v) => (
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 1 }}
                       transition={{ duration: 0.2 }}
                       key={v._id}
-                      className="relative bg-gray-800 rounded-xl p-2 flex flex-col items-center"
+                      className="relative bg-gray-800 rounded-xl p-2 flex flex-col items-center min-w-[20rem]"
                     >
                       <button
                         onClick={() => toggleRead(v)}
