@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import EditFolder from './EditFolder';
 import EditVideo from './EditVideo';
 import { useAuth } from '../context/AuthProvider';
+import { format } from 'timeago.js'; // for count the time when the link pasted
 
 function LandingPage() {
   const [Folders, setFolders] = useState([]);
@@ -323,7 +324,7 @@ function LandingPage() {
       >
 
         {/* leftside */}
-       {showleft && (<motion.div className='lg:static absolute top-20 left-0 z-10 h-screen  bg-[#263a4f7d] backdrop-blur-sm flex flex-col w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/5 '
+        {showleft && (<motion.div className='lg:static absolute top-20 left-0 z-10 h-screen  bg-[#263a4f7d] backdrop-blur-sm flex flex-col w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/5 '
           // key="sidebar"
           initial={{ x: -300, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -432,8 +433,8 @@ function LandingPage() {
         </motion.div>)}
         {/* rightside */}
         <div className=" flex-1  p-4 overflow-y-auto h-screen relative">
-           
-        
+
+
           {SelectedFolder ? (
             // <div className='relative'>
             <div className=' bg-gray700 flex flex-col justify-center items-center gap-4 '>
@@ -445,17 +446,17 @@ function LandingPage() {
                 >
                   <SquarePen />
                 </div>
-                
+
               </div>
               {showEdit && (
-                  <div className='absolute inset-0 z-10 text-sm flex justify-center items-center '>
-                    <EditFolder
-                      folder={SelectedFolder}
-                      onClose={() => setShowEdit(false)}
-                      onUpdate={fetchFolders}
-                    />
-                  </div>
-                )}
+                <div className='absolute inset-0 z-10 text-sm flex justify-center items-center '>
+                  <EditFolder
+                    folder={SelectedFolder}
+                    onClose={() => setShowEdit(false)}
+                    onUpdate={fetchFolders}
+                  />
+                </div>
+              )}
 
               {/* paste form */}
               <form onSubmit={handleSubmitpaste(pasteVideoLinks)}
@@ -502,17 +503,22 @@ function LandingPage() {
                       key={v._id}
                       className="relative bg-gray-800 rounded-xl p-2 flex flex-col items-center"
                     >
-                      <button
-                        onClick={() => toggleRead(v)}
-                        disabled={loading}
-                        className='mb-1.5 self-end p-1 hover:cursor-pointer'
-                      >
-                        {v.isRead ? (<BookMarked
-                          className='text-red-700 hover:text-red-900'
-                        />) : (<BookMarked
-                          className='text-gray-400 hover:text-gray-600'
-                        />)}
-                      </button>
+                      <div className='flex justify-between w-full'>
+                        <span className="italic text-gray-400">
+                          {format(v.createdAt)}
+                        </span>
+                        <button
+                          onClick={() => toggleRead(v)}
+                          disabled={loading}
+                          className='mb-1.5 self-end p-1 hover:cursor-pointer'
+                        >
+                          {v.isRead ? (<BookMarked
+                            className='text-red-700 hover:text-red-900'
+                          />) : (<BookMarked
+                            className='text-gray-400 hover:text-gray-600'
+                          />)}
+                        </button>
+                      </div>
                       {v.thumbnail ? (
                         <img
                           src={v.thumbnail}
