@@ -500,7 +500,7 @@ function LandingPage() {
                       whileTap={{ scale: 1 }}
                       transition={{ duration: 0.2 }}
                       key={v._id}
-                      className="relative bg-gray-800 rounded-xl p-2 flex flex-col items-center min-w-[20em]"
+                      className="relative bg-gray-800 rounded-xl p-2 flex flex-col items-center"
                     >
                       <button
                         onClick={() => toggleRead(v)}
