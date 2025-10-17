@@ -39,9 +39,8 @@ function Signin() {
         // console.log(meData)
         setUser(meData.user); // update context immediately
 
-        setTimeout(() => {
           navigate('/landingpage');
-        }, 1000);
+        
       }
 
     } catch (err) {
